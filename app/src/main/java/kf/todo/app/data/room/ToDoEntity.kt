@@ -2,12 +2,14 @@ package kf.todo.app.data.room
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.time.LocalDateTime
 
-@Entity
-data class TodoEntity(
+@Entity(tableName = "todo")
+data class ToDoEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val title: String,
     val description: String,
-    val isDone: Boolean
+    val isDone: Boolean = false,
+    val dueDate: LocalDateTime
 )
