@@ -50,7 +50,7 @@ class ToDoDaoTest {
     fun addToDoTest()  = runBlocking{
         val newToDo = RoomTestUtil.dummyTodo()
         val createdId = toDoDao.addToDo(newToDo)
-        val createdToDo = toDoDao.getToDoById(createdId.first().toInt())
+        val createdToDo = toDoDao.getToDoById(createdId.first().toInt()).first()
 
         Assert.assertEquals(newToDo.title, createdToDo.title)
         Assert.assertEquals(newToDo.description, createdToDo.description)
@@ -58,7 +58,28 @@ class ToDoDaoTest {
 
     @Test
     @Throws(Exception::class)
-    fun getAllToDos()  = runBlocking{
+    fun updateToDoTest() = runBlocking {
+        val newToDo = RoomTestUtil.dummyTodo()
+        val createdId = toDoDao.addToDo(newToDo)
+        val createdToDo = toDoDao.getToDoById(createdId.first().toInt()).first()
+
+        val newTitle = "title Updated"
+        val newDescription = "description Updated"
+        toDoDao.updateToDo(createdToDo.copy(
+            title = newTitle,
+            description = newDescription
+        ))
+        val updatedToDo = toDoDao.getToDoById(createdId.first().toInt()).first()
+
+        Assert.assertEquals(updatedToDo.title, newTitle)
+        Assert.assertEquals(updatedToDo.description, newDescription)
+
+
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun getAllToDosTest()  = runBlocking{
         val jobGetTodos = async { toDoDao.getToDos().first() }
         val newToDos = RoomTestUtil.dummyTodos(3)
 
@@ -72,7 +93,7 @@ class ToDoDaoTest {
 
     @Test
     @Throws(Exception::class)
-    fun removeTodo() = runBlocking {
+    fun removeTodoTest() = runBlocking {
         val newToDos = RoomTestUtil.dummyTodos(3)
 
         val jobGetTodos = async { toDoDao.getToDos().first() }
