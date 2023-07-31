@@ -1,6 +1,8 @@
 [versions]
 agp = "8.1.0"
 desugar_jdk_libs = "2.0.3"
+mockito-inline = "3.12.4"
+mockito-core = "4.7.0"
 org-jetbrains-kotlin-android = "1.8.10"
 com-google-devtools-ksp = "1.9.0-1.0.11"
 core-ktx = "1.10.1"
@@ -24,6 +26,8 @@ espresso-core = { group = "androidx.test.espresso", name = "espresso-core", vers
 lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockito-inline" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito-core" }
 ui = { group = "androidx.compose.ui", name = "ui" }
 ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }

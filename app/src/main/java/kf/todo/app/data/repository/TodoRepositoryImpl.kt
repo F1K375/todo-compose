@@ -9,6 +9,7 @@ import kf.todo.app.domain.asEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
+import java.io.IOException
 
 class TodoRepositoryImpl (
     private val toDoDao: ToDoDao
@@ -49,7 +50,7 @@ class TodoRepositoryImpl (
             .catch {error->
                 emit(
                     ResultData.Failed(
-                        exception = Exception(message = error.localizedMessage, cause = error),
+                        exception = IOException(error.localizedMessage ?: "Error get detail"),
                         message = "Failed to get detail todo with id $id"
                     )
                 )
@@ -63,7 +64,7 @@ class TodoRepositoryImpl (
             }.catch {error->
                 emit(
                     ResultData.Failed(
-                        exception = Exception(message = error.localizedMessage, cause = error),
+                        exception = IOException(error.localizedMessage ?: "Error get all todo"),
                         message = "Failed to get all todos"
                     )
                 )
